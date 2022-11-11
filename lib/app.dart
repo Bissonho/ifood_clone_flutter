@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ifood_clone/views/content/content_page.dart';
+import 'core/theme/app_theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -8,9 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.theme,
       home: ContentPage(),
     );
   }
