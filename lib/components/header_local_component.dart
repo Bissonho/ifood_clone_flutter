@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ifood_clone/core/theme/app_typography.dart';
 import '../core/theme/app_icons.dart';
 
 class HeaderLocationComponent extends StatelessWidget {
@@ -18,11 +19,14 @@ class HeaderLocationComponent extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
-                  Text(Location),
+                  Text(
+                    Location,
+                    style: AppTypography.LocalTextStyle(context),
+                  ),
                   AppIcon(
                     AppIcons.arrowDown,
                     color: Theme.of(context).primaryColor,
-                    size: Size(20, 20),
+                    size: const Size(20, 20),
                   ),
                 ],
               ),
