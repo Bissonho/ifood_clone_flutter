@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class AppTypography {
@@ -14,10 +12,10 @@ class AppTypography {
         ?.copyWith(fontWeight: FontWeight.w600);
   }
 
-  static TextStyle? LocalTextStyle(BuildContext context) {
+  static TextStyle? localTextStyle(BuildContext context) {
     return Theme.of(context)
         .textTheme
         .bodyMedium
-        ?.copyWith(fontWeight: FontWeight.w700, fontSize: 13);
+        ?.copyWith(fontWeight: FontWeight.w500, fontSize: 15);
   }
 }

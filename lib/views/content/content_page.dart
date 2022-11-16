@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ifood_clone/components/header_local_component.dart';
-import 'package:ifood_clone/core/theme/app_colors.dart';
-import 'package:ifood_clone/core/theme/app_typography.dart';
-import 'package:tab_indicator_styler/tab_indicator_styler.dart';
+import '../../components/bottom_navigator_component.dart';
+import '../../components/content_tab_bar_component.dart';
+import '../../core/theme/app_icons.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({super.key});
@@ -21,48 +21,71 @@ class _ContentPageState extends State<ContentPage>
     _tabController = TabController(vsync: this, length: 2);
   }
 
+  @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
   }
 
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          HeaderLocationComponent(Location: "Rua das Flores do Campo, 10"),
-          Padding(
-            padding: const EdgeInsets.only(left: 16, right: 230),
-            child: TabBar(
-                labelPadding: EdgeInsets.zero,
-                indicatorPadding: EdgeInsets.zero,
-                unselectedLabelColor: AppColors.black54,
-                labelStyle: AppTypography.bodyText(context)
-                    ?.copyWith(color: Colors.black),
-                labelColor: AppColors.black,
-                indicator: MaterialIndicator(
-                    color: AppColors.primaryColor,
-                    height: 2,
-                    bottomLeftRadius: 5,
-                    bottomRightRadius: 5),
-                controller: _tabController,
-                tabs: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Tab(
-                      child: Text('Restaurantes'),
-                    ),
+      body: SafeArea(
+        child: NestedScrollView(
+          physics: BouncingScrollPhysics(),
+          headerSliverBuilder: (context, innerBoxScroll) {
+            return [
+              const HeaderLocationComponent(
+                location: 'R. Domingos Viana, 541',
+              ),
+              ContentTabBarComponent(
+                onTap: (_) {},
+                tabController: _tabController,
+              )
+            ];
+          },
+          body: Column(
+            children: [
+              Expanded(
+                child: CustomScrollView(
+                  physics: BouncingScrollPhysics(),
+                ),
+              ),
+              BottomNavigatorComponent(
+                currentIndex: _currentIndex,
+                items: [
+                  BottomNavigatorItemComponent(
+                    activeIcon: AppIcons.homeActive,
+                    icon: AppIcons.home,
+                    label: 'Início',
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Tab(
-                      child: Text('Mercados'),
-                    ),
+                  BottomNavigatorItemComponent(
+                    activeIcon: AppIcons.searchActive,
+                    icon: AppIcons.search,
+                    label: 'Início',
                   ),
-                ]),
+                  BottomNavigatorItemComponent(
+                    activeIcon: AppIcons.ordersActive,
+                    icon: AppIcons.orders,
+                    label: 'Pedidos',
+                  ),
+                  BottomNavigatorItemComponent(
+                    activeIcon: AppIcons.profileActive,
+                    icon: AppIcons.profile,
+                    label: 'Início',
+                  ),
+                ],
+                onTap: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
