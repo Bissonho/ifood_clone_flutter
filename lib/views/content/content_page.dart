@@ -24,7 +24,7 @@ class _ContentPageState extends State<ContentPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 2);
+    _tabController = TabController(vsync: this, length: 6);
   }
 
   @override
