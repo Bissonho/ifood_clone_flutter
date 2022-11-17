@@ -10,7 +10,6 @@ class BannerSession extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SliverToBoxAdapter(
       child: SizedBox(
-        height: 190,
         child: BannersComponenet(
           banners: [
             BannerItemComponent(imagepath: AppImages.banner1),

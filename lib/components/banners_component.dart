@@ -45,7 +45,7 @@ class _BannersComponenetState extends State<BannersComponenet> {
       child: Column(
         children: [
           SizedBox(
-            height: 140,
+            height: 160,
             child: PageView(
               controller: _pageController,
               scrollDirection: Axis.horizontal,
@@ -59,7 +59,7 @@ class _BannersComponenetState extends State<BannersComponenet> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: widget.banners
                   .map((e) => Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4),
+                        padding: EdgeInsets.only(right: 4),
                         child: AnimatedContainer(
                           duration: Duration(microseconds: 200),
                           decoration: BoxDecoration(
@@ -89,16 +89,15 @@ class BannerItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 160,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              imagepath,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ));
+      padding: const EdgeInsets.only(right: 16),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.asset(
+          imagepath,
+          fit: BoxFit.cover,
+        ),
+      ),
+    ));
   }
 }

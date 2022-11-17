@@ -24,7 +24,7 @@ class RestaurantItemComponent extends StatelessWidget {
                 backgroundImage: NetworkImage(restaurant.photoUrl),
               ),
               const SizedBox(
-                width: 8,
+                width: 14,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,6 +37,7 @@ class RestaurantItemComponent extends StatelessWidget {
                     children: const [
                       SizedBox(
                         width: 8,
+                        height: 2,
                       ),
                     ],
                   ),
@@ -83,7 +84,7 @@ class RestaurantItemComponent extends StatelessWidget {
                   Row(
                     children: [
                       const SizedBox(
-                        width: 12,
+                        height: 34,
                       ),
                       Text(
                           '${restaurant.time[0].toString()}-${restaurant.time[1].toString()}min',
