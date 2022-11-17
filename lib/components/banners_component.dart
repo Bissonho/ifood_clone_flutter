@@ -18,6 +18,7 @@ class _BannersComponenetState extends State<BannersComponenet> {
     // TODO: implement initState
     super.initState();
     _pageController.addListener(() {
+      print(_pageController.toString());
       _onChangepage;
     });
   }
@@ -33,6 +34,7 @@ class _BannersComponenetState extends State<BannersComponenet> {
   _onChangepage(int page) {
     setState(() {
       _currentIndex = _pageController.page!.round();
+      print(_currentIndex.toString());
     });
   }
 
@@ -57,7 +59,7 @@ class _BannersComponenetState extends State<BannersComponenet> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: widget.banners
                   .map((e) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        padding: EdgeInsets.symmetric(horizontal: 4),
                         child: AnimatedContainer(
                           duration: Duration(microseconds: 200),
                           decoration: BoxDecoration(
@@ -66,8 +68,8 @@ class _BannersComponenetState extends State<BannersComponenet> {
                                 ? AppColors.grey70
                                 : AppColors.grey30,
                           ),
-                          width: 6,
-                          height: 6,
+                          width: 4,
+                          height: 4,
                         ),
                       ))
                   .toList(),
