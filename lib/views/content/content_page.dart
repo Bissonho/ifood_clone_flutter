@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ifood_clone/components/filters_component.dart';
 import 'package:ifood_clone/components/header_local_component.dart';
+import 'package:ifood_clone/core/theme/app_colors.dart';
 import '../../components/bottom_navigator_component.dart';
+import '../../components/category_item_component.dart';
 import '../../components/content_tab_bar_component.dart';
+import '../../controllers/contente_controller.dart';
 import '../../core/theme/app_icons.dart';
 
 class ContentPage extends StatefulWidget {
@@ -14,6 +18,8 @@ class ContentPage extends StatefulWidget {
 class _ContentPageState extends State<ContentPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  final controller = ContentController();
+  final cat = ContentController().getCategorys().toList();
 
   @override
   void initState() {
@@ -32,9 +38,10 @@ class _ContentPageState extends State<ContentPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: NestedScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           headerSliverBuilder: (context, innerBoxScroll) {
             return [
               const HeaderLocationComponent(
@@ -43,19 +50,46 @@ class _ContentPageState extends State<ContentPage>
               ContentTabBarComponent(
                 onTap: (_) {},
                 tabController: _tabController,
-              )
+              ),
+              FilterComponenet()
             ];
           },
           body: Column(
             children: [
               Expanded(
-                child: CustomScrollView(
-                  physics: BouncingScrollPhysics(),
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    return await Future.value();
+                  },
+                  child: CustomScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 86,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: cat.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                    left: index == 0 ? 16 : 0,
+                                    right: index == cat.length - 1 ? 16 : 10),
+                                child:
+                                    CategoryItemComponent(category: cat[index]),
+                              );
+                            },
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               BottomNavigatorComponent(
                 currentIndex: _currentIndex,
-                items: [
+                items: const [
                   BottomNavigatorItemComponent(
                     activeIcon: AppIcons.homeActive,
                     icon: AppIcons.home,

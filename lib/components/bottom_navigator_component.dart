@@ -22,6 +22,10 @@ class BottomNavigatorComponent extends StatelessWidget {
       ),
       child: Column(
         children: [
+          Container(
+            height: 1,
+            color: Colors.grey[200],
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(

@@ -18,4 +18,18 @@ class AppTypography {
         .bodyMedium
         ?.copyWith(fontWeight: FontWeight.w500, fontSize: 15);
   }
+
+  static TextStyle? small(BuildContext context) {
+    return Theme.of(context)
+        .textTheme
+        .bodyMedium
+        ?.copyWith(fontWeight: FontWeight.w500, fontSize: 12);
+  }
+
+  static TextStyle? filterItemStyle(BuildContext context) {
+    return Theme.of(context)
+        .textTheme
+        .titleSmall
+        ?.copyWith(fontWeight: FontWeight.normal, fontSize: 13);
+  }
 }
