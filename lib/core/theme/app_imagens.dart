@@ -15,4 +15,8 @@ class AppImages {
   static const saudavel = '${pathImages}categorys/saudavel.jpg';
   static const vegetariano = '${pathImages}categorys/vegetariano.jpg';
   static const vr = '${pathImages}categorys/vr.jpg';
+
+  static const banner1 = '${pathImages}banners/banner_1.webp';
+  static const banner2 = '${pathImages}banners/banner_2.webp';
+  static const banner3 = '${pathImages}banners/banner_3.webp';
 }
