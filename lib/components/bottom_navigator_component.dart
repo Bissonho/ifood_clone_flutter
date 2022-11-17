@@ -27,7 +27,7 @@ class BottomNavigatorComponent extends StatelessWidget {
             color: Colors.grey[200],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.only(left: 24, right: 24, top: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: items
