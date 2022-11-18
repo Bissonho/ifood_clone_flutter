@@ -16,6 +16,13 @@ class AppImages {
   static const japonesa = '${pathImages}categorys/japonesa.webp';
   static const vegetariana = '${pathImages}categorys/vegetariana.webp';
 
+  static const restaurants = '${pathImages}setor/restaurants.webp';
+  static const mercado = '${pathImages}setor/mercado.webp';
+  static const pet = '${pathImages}setor/pet.webp';
+  static const farmacia = '${pathImages}setor/farmácia.webp';
+  static const bebidas = '${pathImages}setor/bebidas.webp';
+  static const clubeIfood = '${pathImages}setor/clubeifood.webp';
+
   static const banner1 = '${pathImages}banners/banner_1.webp';
   static const banner2 = '${pathImages}banners/banner_2.webp';
   static const banner3 = '${pathImages}banners/banner_3.webp';

@@ -20,4 +20,15 @@ class ContentController {
       Category(name: 'Vegetariana', picture: AppImages.vegetariana),
     ];
   }
+
+  List<Category> getSectors() {
+    return [
+      Category(name: 'Restaurantes', picture: AppImages.restaurants),
+      Category(name: 'Mercados', picture: AppImages.mercado),
+      Category(name: 'Farmácia', picture: AppImages.farmacia),
+      Category(name: 'Pet', picture: AppImages.pet),
+      Category(name: 'Clube Ifood', picture: AppImages.clubeIfood),
+      Category(name: 'Bebidas', picture: AppImages.bebidas),
+    ];
+  }
 }

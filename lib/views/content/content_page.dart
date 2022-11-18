@@ -5,6 +5,7 @@ import 'package:ifood_clone/views/content/restaurant_page.dart';
 import '../../components/content_tab_bar_component.dart';
 import '../../controllers/contente_controller.dart';
 import '../../ifood_icons_icons.dart';
+import 'home_page.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({super.key});
@@ -53,7 +54,6 @@ class _ContentPageState extends State<ContentPage>
           currentIndex: _selectedIndex,
           selectedFontSize: 10,
           unselectedFontSize: 10,
-          selectedLabelStyle: TextStyle(),
           type: BottomNavigationBarType.fixed,
           onTap: _onItemTapped,
           items: const [
@@ -116,7 +116,7 @@ class _ContentPageState extends State<ContentPage>
           body: DefaultTabController(
             length: 6,
             child: TabBarView(controller: _tabController, children: [
-              const Icon(Icons.directions_car),
+              HomePage(),
               RestaurantPage(),
             ]),
           ),
