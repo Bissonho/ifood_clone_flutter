@@ -6,11 +6,11 @@ Project not yet finished
 
 - Mobile interface
 <p align="left">
-  <img width=40% height=40% src="assets/images/readme/mobile_1.png">
+  <img width=40% height=40% src="assets/images/readme/mobile_1.jpeg">
 </p>
 
 <p align="left">
-  <img width=40% height=40% src="assets/images/readme/mobile_2.png">
+  <img width=40% height=40% src="assets/images/readme/mobile_2.jpeg">
 </p>
 
 
