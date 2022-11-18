@@ -11,7 +11,7 @@ class CategoriesSession extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 86,
+        height: 96,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           physics: const BouncingScrollPhysics(),
@@ -19,6 +19,7 @@ class CategoriesSession extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: EdgeInsets.only(
+                  top: 16,
                   left: index == 0 ? 16 : 0,
                   right: index == categorys.length - 1 ? 16 : 10),
               child: CategoryItemComponent(category: categorys[index]),

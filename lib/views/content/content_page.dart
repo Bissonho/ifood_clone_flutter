@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ifood_clone/components/filters_component.dart';
 import 'package:ifood_clone/components/header_local_component.dart';
 import 'package:ifood_clone/core/theme/app_colors.dart';
-import 'package:ifood_clone/core/theme/app_typography.dart';
+import 'package:ifood_clone/views/content/restaurant_page.dart';
 import '../../components/content_tab_bar_component.dart';
-import '../../components/restaurant_list.dart';
 import '../../controllers/contente_controller.dart';
-import '../../sessions/banner_session.dart';
-import '../../sessions/bottom_navigator_session.dart';
-import '../../sessions/categories_session.dart';
+import '../../ifood_icons_icons.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({super.key});
@@ -21,7 +17,13 @@ class _ContentPageState extends State<ContentPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final controller = ContentController();
-  final cat = ContentController().getCategorys().toList();
+  int _selectedIndex = 0;
+
+  List<IconData> iconList = [
+    IfoodIcons.home,
+    IfoodIcons.add_to_photos,
+    IfoodIcons.arrow_down,
+  ];
 
   @override
   void initState() {
@@ -35,11 +37,67 @@ class _ContentPageState extends State<ContentPage>
     super.dispose();
   }
 
-  int _currentIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.black.withOpacity(0.85),
+          unselectedItemColor: Colors.black.withOpacity(0.4),
+          currentIndex: _selectedIndex,
+          selectedFontSize: 10,
+          unselectedFontSize: 10,
+          selectedLabelStyle: TextStyle(),
+          type: BottomNavigationBarType.fixed,
+          onTap: _onItemTapped,
+          items: const [
+            BottomNavigationBarItem(
+                label: 'Início',
+                icon: Padding(
+                  padding: EdgeInsets.only(bottom: 6),
+                  child: Icon(IfoodIcons.home),
+                ),
+                activeIcon: Padding(
+                  padding: EdgeInsets.only(bottom: 6),
+                  child: Icon(IfoodIcons.home_active),
+                )),
+            BottomNavigationBarItem(
+                label: 'Busca',
+                icon: Padding(
+                  padding: EdgeInsets.only(bottom: 6),
+                  child: Icon(IfoodIcons.search),
+                ),
+                activeIcon: Padding(
+                  padding: EdgeInsets.only(bottom: 6),
+                  child: Icon(IfoodIcons.search_active),
+                )),
+            BottomNavigationBarItem(
+                label: 'Pedidos',
+                icon: Padding(
+                  padding: EdgeInsets.only(bottom: 6),
+                  child: Icon(IfoodIcons.orders),
+                ),
+                activeIcon: Padding(
+                  padding: EdgeInsets.only(bottom: 6),
+                  child: Icon(IfoodIcons.orders_active),
+                )),
+            BottomNavigationBarItem(
+                label: 'Perfil',
+                icon: Padding(
+                  padding: EdgeInsets.only(bottom: 6),
+                  child: Icon(IfoodIcons.profile),
+                ),
+                activeIcon: Padding(
+                  padding: EdgeInsets.only(bottom: 6),
+                  child: Icon(IfoodIcons.profile_active),
+                )),
+          ]),
       backgroundColor: AppColors.white,
       body: SafeArea(
         child: NestedScrollView(
@@ -55,47 +113,12 @@ class _ContentPageState extends State<ContentPage>
               ),
             ];
           },
-          body: Column(
-            children: [
-              Expanded(
-                child: RefreshIndicator(
-                  onRefresh: () async {
-                    return await Future.value();
-                  },
-                  child: CustomScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    slivers: [
-                      CategoriesSession(categorys: cat),
-                      const BannerSession(),
-                      FilterComponenet(),
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 24, right: 24, bottom: 18),
-                          child: Text(
-                            'Lojas',
-                            style: AppTypography.sessionTitle(context),
-                          ),
-                        ),
-                      ),
-                      SliverList(
-                          delegate: SliverChildListDelegate(restaurants
-                              .map(
-                                  (e) => RestaurantItemComponent(restaurant: e))
-                              .toList()))
-                    ],
-                  ),
-                ),
-              ),
-              BottomNavigatorSession(
-                currentIndex: _currentIndex,
-                onTap: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-              )
-            ],
+          body: DefaultTabController(
+            length: 6,
+            child: TabBarView(controller: _tabController, children: [
+              const Icon(Icons.directions_car),
+              RestaurantPage(),
+            ]),
           ),
         ),
       ),
